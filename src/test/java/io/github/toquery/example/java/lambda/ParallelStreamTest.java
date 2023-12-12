@@ -1,7 +1,7 @@
 package io.github.toquery.example.java.lambda;
 
 import com.google.common.collect.Lists;
-import io.github.toquery.example.lambda.core.parallel.BookBlocker;
+import io.github.toquery.example.java.lambda.core.parallel.BookBlocker;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,6 @@ import java.util.stream.Stream;
  * <a href="https://stackoverflow.com/questions/21163108/custom-thread-pool-in-java-8-parallel-stream">Java 8 并行流中的自定义线程池</a>
  * <a href="https://stackoverflow.com/questions/52287717/how-to-specify-forkjoinpool-for-java-8-parallel-stream">如何为 Java 8 并行流指定 ForkJoinPool</a>
  */
-@Slf4j
 public class ParallelStreamTest {
 
     /**

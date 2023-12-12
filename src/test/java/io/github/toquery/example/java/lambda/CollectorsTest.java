@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 /**
  *
  */
-@Slf4j
 public class CollectorsTest extends BaseTest {
 
     protected static final List<Book> BOOKS = MockBookData.INSTANCE.books();
