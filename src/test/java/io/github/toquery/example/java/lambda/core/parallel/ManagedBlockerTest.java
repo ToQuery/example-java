@@ -1,4 +1,4 @@
-package io.github.toquery.example.lambda.core.parallel;
+package io.github.toquery.example.java.lambda.core.parallel;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;

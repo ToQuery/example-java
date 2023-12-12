@@ -1,6 +1,7 @@
-package io.github.toquery.example.lambda.data;
+package io.github.toquery.example.java.lambda.data;
 
-import io.github.toquery.example.lambda.entity.Book;
+
+import io.github.toquery.example.java.lambda.entity.Book;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

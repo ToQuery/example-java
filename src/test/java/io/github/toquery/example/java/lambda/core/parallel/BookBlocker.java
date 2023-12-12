@@ -1,4 +1,4 @@
-package io.github.toquery.example.lambda.core.parallel;
+package io.github.toquery.example.java.lambda.core.parallel;
 
 import java.util.concurrent.ForkJoinPool;
 
