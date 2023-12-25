@@ -31,17 +31,17 @@ public class JavaGuavaRangeTests extends BaseTest{
         rangeMap.put(Range.closed(70, 80), "良好");
         rangeMap.put(Range.closedOpen(80, 100), "优秀");
 
-        LOG.info("rangeMap = {}", rangeMap);
+        log.info("rangeMap = {}", rangeMap);
 
 
-        LOG.info("rangeMap.get 59 = {}", rangeMap.get(59));
-        LOG.info("rangeMap.get 60 = {}", rangeMap.get(60));
-        LOG.info("rangeMap.get 90 = {}", rangeMap.get(90));
-        LOG.info("rangeMap.get 91 = {}", rangeMap.get(91));
+        log.info("rangeMap.get 59 = {}", rangeMap.get(59));
+        log.info("rangeMap.get 60 = {}", rangeMap.get(60));
+        log.info("rangeMap.get 90 = {}", rangeMap.get(90));
+        log.info("rangeMap.get 91 = {}", rangeMap.get(91));
 
         rangeMap.remove(Range.closed(70, 75));
-        LOG.info("rangeMap = {}", rangeMap);
-        LOG.info(rangeMap.get(75));
+        log.info("rangeMap = {}", rangeMap);
+        log.info(rangeMap.get(75));
     }
 
     @Test
@@ -49,15 +49,15 @@ public class JavaGuavaRangeTests extends BaseTest{
         // 注意与 RangeMap 的区别
         RangeSet<Integer> rangeSet = TreeRangeSet.create();
         rangeSet.add(Range.closed(1, 10));
-        LOG.info("rangeSet = {}", rangeSet);
+        log.info("rangeSet = {}", rangeSet);
         rangeSet.add(Range.closedOpen(11, 15));
-        LOG.info("rangeSet = {}", rangeSet);
+        log.info("rangeSet = {}", rangeSet);
         rangeSet.add(Range.open(15, 20));
-        LOG.info("rangeSet = {}", rangeSet);
+        log.info("rangeSet = {}", rangeSet);
         rangeSet.add(Range.openClosed(0, 0));
-        LOG.info("rangeSet = {}", rangeSet);
+        log.info("rangeSet = {}", rangeSet);
         rangeSet.remove(Range.open(5, 10));
-        LOG.info("rangeSet = {}", rangeSet);
+        log.info("rangeSet = {}", rangeSet);
 
 
 

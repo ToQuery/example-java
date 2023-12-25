@@ -27,16 +27,18 @@ public class AppJdk12Test extends BaseTest {
 
         // 发送请求
         HttpResponse<String> resp = client.send(req, HttpResponse.BodyHandlers.ofString());
-        LOG.info(resp.body());
+        log.info(resp.body());
 
     }
 
-
+    @Test
     public void switchEnhance(){
         int i = 0;
         String res =  switch (i) {
             case 1 -> "1";
             default -> "0";
         };
+
+        log.info("res : {}", res);
     }
 }

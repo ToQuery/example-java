@@ -1,23 +1,27 @@
 package io.github.toquery.example.java.jdk.jdk11;
 
+import io.github.toquery.example.java.BaseTest;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 /**
  *
  */
-public class AppJdk11Test {
+public class AppJdk11Test extends BaseTest {
     @Test
     public void stringEnhance(){
 
         // 判断字符串是否为空白
-        " ".isBlank();
-        " Javastack ".stripTrailing();  // " Javastack"
-        " Javastack ".stripLeading();   // "Javastack "
+        boolean isBlank = " ".isBlank();
+        log.info("isBlank : {}", isBlank);
+
+        String stripTrailing = " Javastack ".stripTrailing();  // " Javastack"
+        log.info("stripTrailing : {}", stripTrailing);
+
+        String stripLeading = " Javastack ".stripLeading();   // "Javastack "
+        log.info("stripLeading : {}", stripLeading);
+
+        String repeat = " Javastack ".repeat(2);   // " Javastack  Javastack "
+        log.info("repeat : {}", repeat);
+
     }
 }

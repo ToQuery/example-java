@@ -1,7 +1,7 @@
-package io.github.toquery.example.java.lambda.data;
+package io.github.toquery.example.java.model.data;
 
 
-import io.github.toquery.example.java.lambda.entity.Book;
+import io.github.toquery.example.java.model.Book;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,12 +11,12 @@ import java.util.List;
 /**
  *
  */
-public class MockBookData {
+public class MockData {
 
-    public static final MockBookData INSTANCE = new MockBookData();
+    public static final MockData INSTANCE = new MockData();
 
 
-    private MockBookData() {
+    private MockData() {
     }
 
     /**

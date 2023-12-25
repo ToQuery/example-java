@@ -1,7 +1,5 @@
 package io.github.toquery.example.java.jdk.jdk8;
 
-import cn.hutool.log.Log;
-import cn.hutool.log.LogFactory;
 import io.github.toquery.example.java.BaseTest;
 import org.junit.jupiter.api.Test;
 
@@ -9,21 +7,32 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Base64;
 import java.util.Optional;
 
 /**
  *
  */
-public class AppJdk8Test extends BaseTest {
+public class Jdk8Test extends BaseTest {
 
     @Test
     public void localDateTime() throws IOException {
 
         LocalDate localDate = LocalDate.now();
+        log.info("localDate : {}", localDate);
+
+        LocalDate start = localDate.with(TemporalAdjusters.firstDayOfMonth());
+        log.info("start : {}", start);
+
+        LocalDate end = localDate.with(TemporalAdjusters.lastDayOfMonth());
+        log.info("end : {}", end);
+
         LocalTime localTime = LocalTime.now();
+        log.info("localTime : {}", localTime);
 
         LocalDateTime localDateTime = LocalDateTime.of(localDate, localTime);
+        log.info("localDateTime : {}", localDateTime);
 
     }
 
@@ -58,9 +67,9 @@ public class AppJdk8Test extends BaseTest {
 
     public void base64(){
         String base64 = Base64.getEncoder().encodeToString("aaa".getBytes());
-        LOG.info(base64);
+        log.info(base64);
         byte[] bytes = Base64.getDecoder().decode(base64);
-        LOG.info(new String(bytes));
+        log.info(new String(bytes));
 
     }
 

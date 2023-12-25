@@ -2,9 +2,8 @@ package io.github.toquery.example.java.lambda;
 
 import io.github.toquery.example.java.BaseTest;
 import io.github.toquery.example.java.lambda.core.collectors.BookCollectors;
-import io.github.toquery.example.java.lambda.data.MockBookData;
-import io.github.toquery.example.java.lambda.entity.Book;
-import lombok.extern.slf4j.Slf4j;
+import io.github.toquery.example.java.model.data.MockData;
+import io.github.toquery.example.java.model.Book;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -17,53 +16,54 @@ import java.util.stream.Collectors;
  */
 public class CollectorsTest extends BaseTest {
 
-    protected static final List<Book> BOOKS = MockBookData.INSTANCE.books();
+    protected static final List<Book> BOOKS = MockData.INSTANCE.books();
+
     /**
      * 输出初始化数据
      */
     @BeforeAll
     public static void beforeAll() {
-        LOG.info("{}原始数据{}", separation, separation);
+        log.info("{}原始数据{}", separation, separation);
         CollectorsTest.printLog(BOOKS);
     }
 
     @Test
     public void testToList() {
-        List<String> list1 = BOOKS.stream().map(Book::name).collect(Collectors.toList());
-        LOG.info("{}testToList{}", separation, separation);
+        List<String> list1 = BOOKS.stream().map(Book::getName).collect(Collectors.toList());
+        log.info("{}testToList{}", separation, separation);
         CollectorsTest.printLog(list1);
 
         // jdk9+
-        List<String> list2 = BOOKS.stream().map(Book::name).toList();
-        LOG.info("{}testToList{}", separation, separation);
+        List<String> list2 = BOOKS.stream().map(Book::getName).toList();
+        log.info("{}testToList{}", separation, separation);
         CollectorsTest.printLog(list2);
     }
 
     @Test
     public void testToCollection() {
-        Set<String> set = BOOKS.stream().map(Book::name).collect(Collectors.toCollection(TreeSet::new));
-        LOG.info("{}testToCollection{}", separation, separation);
+        Set<String> set = BOOKS.stream().map(Book::getName).collect(Collectors.toCollection(TreeSet::new));
+        log.info("{}testToCollection{}", separation, separation);
         CollectorsTest.printLog(set);
 
-        List<String> list = BOOKS.stream().map(Book::name).collect(Collectors.toCollection(ArrayList::new));
-        LOG.info("{}testToCollection{}", separation, separation);
+        List<String> list = BOOKS.stream().map(Book::getName).collect(Collectors.toCollection(ArrayList::new));
+        log.info("{}testToCollection{}", separation, separation);
         CollectorsTest.printLog(set);
     }
 
     @Test
     public void testToMap() {
-        Map<String, Book> bookNameMap = BOOKS.stream().collect(Collectors.toMap(Book::name, Function.identity()));
-        LOG.info("{}testToMap{}", separation, separation);
+        Map<String, Book> bookNameMap = BOOKS.stream().collect(Collectors.toMap(Book::getName, Function.identity()));
+        log.info("{}testToMap{}", separation, separation);
         CollectorsTest.printLog(bookNameMap);
 
 
-        Map<String, Double> bookComputeValueMap = BOOKS.stream().collect(Collectors.toMap(Book::name, BookCollectors::computeValue));
-        LOG.info("{}testToMap{}", separation, separation);
+        Map<String, Double> bookComputeValueMap = BOOKS.stream().collect(Collectors.toMap(Book::getName, BookCollectors::computeValue));
+        log.info("{}testToMap{}", separation, separation);
         CollectorsTest.printLog(bookComputeValueMap);
 
         // 将同一个出版社合并，并用，拼接
-        Map<String, String> pressBookName = BOOKS.stream().collect(Collectors.toMap(Book::press, Book::name, (s, a) -> s + ", " + a));
-        LOG.info("{}testToMap{}", separation, separation);
+        Map<String, String> pressBookName = BOOKS.stream().collect(Collectors.toMap(Book::getPress, Book::getName, (s, a) -> s + ", " + a));
+        log.info("{}testToMap{}", separation, separation);
         CollectorsTest.printLog(pressBookName);
 
         // TODO mapFactory
@@ -74,90 +74,90 @@ public class CollectorsTest extends BaseTest {
 
     @Test
     public void testMinByOrMaxBy() {
-        Optional<Book> minOptionalBook1 = BOOKS.stream().min(Comparator.comparing(Book::quantity));
-        LOG.info("{}testMinByOrMaxBy{}", separation, separation);
-        LOG.info("{}", minOptionalBook1.get());
+        Optional<Book> minOptionalBook1 = BOOKS.stream().min(Comparator.comparing(Book::getQuantity));
+        log.info("{}testMinByOrMaxBy{}", separation, separation);
+        log.info("{}", minOptionalBook1.get());
 
 
-        Optional<Book> minOptionalBook2 = BOOKS.stream().collect(Collectors.minBy(Comparator.comparing(Book::quantity)));
-        LOG.info("{}testMinByOrMaxBy{}", separation, separation);
-        LOG.info("{}", minOptionalBook2.get());
+        Optional<Book> minOptionalBook2 = BOOKS.stream().collect(Collectors.minBy(Comparator.comparing(Book::getQuantity)));
+        log.info("{}testMinByOrMaxBy{}", separation, separation);
+        log.info("{}", minOptionalBook2.get());
 
 
-        Optional<Book> maxOptionalBook1 = BOOKS.stream().max(Comparator.comparing(Book::quantity));
-        LOG.info("{}testMinByOrMaxBy{}", separation, separation);
-        LOG.info("{}", maxOptionalBook1.orElseThrow());
+        Optional<Book> maxOptionalBook1 = BOOKS.stream().max(Comparator.comparing(Book::getQuantity));
+        log.info("{}testMinByOrMaxBy{}", separation, separation);
+        log.info("{}", maxOptionalBook1.orElseThrow());
 
-        Optional<Book> maxOptionalBook2 = BOOKS.stream().collect(Collectors.maxBy(Comparator.comparing(Book::quantity)));
-        LOG.info("{}testMinByOrMaxBy{}", separation, separation);
-        LOG.info("{}", maxOptionalBook2.get());
+        Optional<Book> maxOptionalBook2 = BOOKS.stream().collect(Collectors.maxBy(Comparator.comparing(Book::getQuantity)));
+        log.info("{}testMinByOrMaxBy{}", separation, separation);
+        log.info("{}", maxOptionalBook2.get());
     }
 
 
     @Test
     public void testJoining() {
-        String joined1 = BOOKS.stream().map(Book::name).collect(Collectors.joining());
-        LOG.info("{}testJoining{}", separation, separation);
-        LOG.info(joined1);
+        String joined1 = BOOKS.stream().map(Book::getName).collect(Collectors.joining());
+        log.info("{}testJoining{}", separation, separation);
+        log.info(joined1);
 
-        String joined2 = BOOKS.stream().map(Book::name).collect(Collectors.joining(";"));
-        LOG.info("{}testJoining{}", separation, separation);
-        LOG.info(joined2);
+        String joined2 = BOOKS.stream().map(Book::getName).collect(Collectors.joining(";"));
+        log.info("{}testJoining{}", separation, separation);
+        log.info(joined2);
 
-        String joined3 = BOOKS.stream().map(Book::name).collect(Collectors.joining(";", "#prefix#", "#suffix#"));
-        LOG.info("{}testJoining{}", separation, separation);
-        LOG.info(joined3);
+        String joined3 = BOOKS.stream().map(Book::getName).collect(Collectors.joining(";", "#prefix#", "#suffix#"));
+        log.info("{}testJoining{}", separation, separation);
+        log.info(joined3);
     }
 
     @Test
     public void testSumming() {
-        int total1 = BOOKS.stream().collect(Collectors.summingInt(Book::quantity));
-        LOG.info("{}testSumming{}", separation, separation);
-        LOG.info("{}", total1);
+        int total1 = BOOKS.stream().collect(Collectors.summingInt(Book::getQuantity));
+        log.info("{}testSumming{}", separation, separation);
+        log.info("{}", total1);
 
-        Double total2 = BOOKS.stream().collect(Collectors.summingDouble(Book::price));
-        LOG.info("{}testSumming{}", separation, separation);
-        LOG.info("{}", total2);
+        Double total2 = BOOKS.stream().collect(Collectors.summingDouble(Book::getPrice));
+        log.info("{}testSumming{}", separation, separation);
+        log.info("{}", total2);
 
-        Long total3 = BOOKS.stream().collect(Collectors.summingLong(Book::id));
-        LOG.info("{}testSumming{}", separation, separation);
-        LOG.info("{}", total3);
+        Long total3 = BOOKS.stream().collect(Collectors.summingLong(Book::getId));
+        log.info("{}testSumming{}", separation, separation);
+        log.info("{}", total3);
 
 
-        IntSummaryStatistics total4 = BOOKS.stream().collect(Collectors.summarizingInt(Book::quantity));
-        LOG.info("{}testSumming{}", separation, separation);
-        LOG.info("{}", total4);
+        IntSummaryStatistics total4 = BOOKS.stream().collect(Collectors.summarizingInt(Book::getQuantity));
+        log.info("{}testSumming{}", separation, separation);
+        log.info("{}", total4);
 
-        int total11 = BOOKS.stream().mapToInt(Book::quantity).sum();
-        LOG.info("{}testSumming{}", separation, separation);
-        LOG.info("{}", total11);
+        int total11 = BOOKS.stream().mapToInt(Book::getQuantity).sum();
+        log.info("{}testSumming{}", separation, separation);
+        log.info("{}", total11);
     }
 
     @Test
     public void testGroupingBy() {
         // 一个参数
-        Map<String, List<Book>> pressMap = BOOKS.stream().collect(Collectors.groupingBy(Book::press));
-        LOG.info("{}testGroupingBy{}", separation, separation);
+        Map<String, List<Book>> pressMap = BOOKS.stream().collect(Collectors.groupingBy(Book::getPress));
+        log.info("{}testGroupingBy{}", separation, separation);
         CollectorsTest.printLog(pressMap);
 
         // 两个参数
-        Map<String, Set<String>> namesByPress = BOOKS.stream().collect(Collectors.groupingBy(Book::press, Collectors.mapping(Book::name, Collectors.toSet())));
-        LOG.info("{}testGroupingBy{}", separation, separation);
+        Map<String, Set<String>> namesByPress = BOOKS.stream().collect(Collectors.groupingBy(Book::getPress, Collectors.mapping(Book::getName, Collectors.toSet())));
+        log.info("{}testGroupingBy{}", separation, separation);
         CollectorsTest.printLog(namesByPress);
 
-        Map<String, Integer> totalByPress = BOOKS.stream().collect(Collectors.groupingBy(Book::press, Collectors.summingInt(Book::quantity)));
-        LOG.info("{}testGroupingBy{}", separation, separation);
+        Map<String, Integer> totalByPress = BOOKS.stream().collect(Collectors.groupingBy(Book::getPress, Collectors.summingInt(Book::getQuantity)));
+        log.info("{}testGroupingBy{}", separation, separation);
         CollectorsTest.printLog(totalByPress);
 
 
         // 三个参数
-        Map<String, Set<String>> namesByPressTreeMap = BOOKS.stream().collect(Collectors.groupingBy(Book::press, TreeMap::new, Collectors.mapping(Book::name, Collectors.toSet())));
-        LOG.info("{}testGroupingBy{}", separation, separation);
+        Map<String, Set<String>> namesByPressTreeMap = BOOKS.stream().collect(Collectors.groupingBy(Book::getPress, TreeMap::new, Collectors.mapping(Book::getName, Collectors.toSet())));
+        log.info("{}testGroupingBy{}", separation, separation);
         CollectorsTest.printLog(namesByPressTreeMap);
 
         // 根据出版社、作者 二级map
-        Map<String, Map<String, List<Book>>> pressAndAuthorMap = BOOKS.stream().collect(Collectors.groupingBy(Book::press, Collectors.groupingBy(Book::author)));
-        LOG.info("{}testGroupingBy{}", separation, separation);
+        Map<String, Map<String, List<Book>>> pressAndAuthorMap = BOOKS.stream().collect(Collectors.groupingBy(Book::getPress, Collectors.groupingBy(Book::getAuthor)));
+        log.info("{}testGroupingBy{}", separation, separation);
         CollectorsTest.printLog(pressAndAuthorMap);
     }
 
@@ -167,8 +167,8 @@ public class CollectorsTest extends BaseTest {
     @Test
     public void testPartitioningBy() {
         Double priceThreshold = 2.0;
-        Map<Boolean, List<Book>> pricePartitioning = BOOKS.stream().collect(Collectors.partitioningBy(book -> book.price() >= priceThreshold));
-        LOG.info("{}testPartitioningBy{}", separation, separation);
+        Map<Boolean, List<Book>> pricePartitioning = BOOKS.stream().collect(Collectors.partitioningBy(book -> book.getPrice() >= priceThreshold));
+        log.info("{}testPartitioningBy{}", separation, separation);
         CollectorsTest.printLog(pricePartitioning);
     }
 
@@ -178,8 +178,8 @@ public class CollectorsTest extends BaseTest {
      */
     @Test
     public void testCollectingAndThen() {
-        List<Book> booksPress = BOOKS.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Book::press))), ArrayList::new));
-        LOG.info("{}testCollectingAndThen{}", separation, separation);
+        List<Book> booksPress = BOOKS.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Book::getPress))), ArrayList::new));
+        log.info("{}testCollectingAndThen{}", separation, separation);
         CollectorsTest.printLog(booksPress);
     }
 
@@ -190,8 +190,8 @@ public class CollectorsTest extends BaseTest {
     public void testTeeing() {
         Map<String, Book> result1 = BOOKS.stream().collect(
                 Collectors.teeing(
-                        Collectors.maxBy(Comparator.comparing(Book::quantity)),
-                        Collectors.minBy(Comparator.comparing(Book::quantity)),
+                        Collectors.maxBy(Comparator.comparing(Book::getQuantity)),
+                        Collectors.minBy(Comparator.comparing(Book::getQuantity)),
                         (e1, e2) -> {
                             HashMap<String, Book> map = new HashMap<>();
                             map.put("MAX", e1.get());
@@ -200,12 +200,12 @@ public class CollectorsTest extends BaseTest {
                         }
                 ));
 
-        LOG.info("{}testTeeing{}", separation, separation);
+        log.info("{}testTeeing{}", separation, separation);
         CollectorsTest.printLog(result1);
 
         Map<String, List<Book>> result2 = BOOKS.stream().collect(Collectors.teeing(
-                Collectors.filtering(p -> p.quantity() % 2 == 0, Collectors.toList()),
-                Collectors.filtering(p -> p.quantity() % 2 != 0, Collectors.toList()),
+                Collectors.filtering(p -> p.getQuantity() % 2 == 0, Collectors.toList()),
+                Collectors.filtering(p -> p.getQuantity() % 2 != 0, Collectors.toList()),
                 (res1, res2) -> {
                     Map<String, List<Book>> map = new HashMap<>();
                     map.put("EvenBooks", res1);
@@ -213,7 +213,7 @@ public class CollectorsTest extends BaseTest {
                     return map;
                 }));
 
-        LOG.info("{}testTeeing{}", separation, separation);
+        log.info("{}testTeeing{}", separation, separation);
         CollectorsTest.printLog(result2);
 
 
@@ -226,14 +226,14 @@ public class CollectorsTest extends BaseTest {
     @Test
     public void testFiltering() {
         // 每个出版社分组，库存数量大于等于7 的数据，与下面的区别：即使不满足条件也会保留 key
-        Map<String, List<Book>> result1 = BOOKS.stream().collect(Collectors.groupingBy(Book::press, Collectors.filtering(book -> book.quantity() >= 7, Collectors.toList())));
-        LOG.info("{}testFiltering{}", separation, separation);
+        Map<String, List<Book>> result1 = BOOKS.stream().collect(Collectors.groupingBy(Book::getPress, Collectors.filtering(book -> book.getQuantity() >= 7, Collectors.toList())));
+        log.info("{}testFiltering{}", separation, separation);
         CollectorsTest.printLog(result1);
 
 
         // 每个出版社分组，库存数量大于等于7 的数据, 与上面的区别：不满足条件key也直接不存在
-        Map<String, List<Book>> result2 = BOOKS.stream().filter(book -> book.quantity() >= 7).collect(Collectors.groupingBy(Book::press));
-        LOG.info("{}testFiltering{}", separation, separation);
+        Map<String, List<Book>> result2 = BOOKS.stream().filter(book -> book.getQuantity() >= 7).collect(Collectors.groupingBy(Book::getPress));
+        log.info("{}testFiltering{}", separation, separation);
         CollectorsTest.printLog(result2);
     }
 
@@ -242,8 +242,8 @@ public class CollectorsTest extends BaseTest {
      */
     @Test
     public void testGroupingByAndCollectingAndThen() {
-        Map<String, List<Book>> pressMap = BOOKS.stream().collect(Collectors.groupingBy(Book::press, Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Book::author))), ArrayList::new)));
-        LOG.info("{}testGroupingByAndCollectingAndThen{}", separation, separation);
+        Map<String, List<Book>> pressMap = BOOKS.stream().collect(Collectors.groupingBy(Book::getPress, Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Book::getAuthor))), ArrayList::new)));
+        log.info("{}testGroupingByAndCollectingAndThen{}", separation, separation);
         CollectorsTest.printLog(pressMap);
     }
 }

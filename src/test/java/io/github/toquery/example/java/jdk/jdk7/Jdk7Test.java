@@ -12,7 +12,7 @@ import java.util.List;
 /**
  *
  */
-public class AppJdk7Test {
+public class Jdk7Test {
     private static final Log LOG = LogFactory.get();
 
     private static final Long AAA = 10_000_000L;
@@ -29,7 +29,7 @@ public class AppJdk7Test {
         }
     }
 
-    public void catchMultipleCatch() throws Exception {
+    public void catchMultipleException() throws Exception {
         try {
             new FileInputStream("");
             Thread.sleep(1);

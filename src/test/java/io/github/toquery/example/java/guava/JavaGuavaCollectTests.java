@@ -39,54 +39,55 @@ public class JavaGuavaCollectTests extends BaseTest {
         Iterable<String> iterable1 = Lists.newArrayList("a", "b", "c");
         Iterable<Integer> iterable2 = Lists.newArrayList(1, 2, 3);
         Iterable<Serializable> concatIterable1 = Iterables.concat(iterable1, iterable2);
-        LOG.info("Iterables.concat = {}", concatIterable1);
+        log.info("Iterables.concat = {}", concatIterable1);
+
         Iterables.removeAll(concatIterable1, Lists.newArrayList("a", 1));
         Iterables.removeAll(iterable1, Lists.newArrayList("b"));
         Iterables.removeAll(iterable2, Lists.newArrayList(2));
-        LOG.info("Iterables.concat = {}", concatIterable1);
+        log.info("Iterables.concat = {}", concatIterable1);
 
         LOG_SPLIT();
 
         Iterable<Serializable> iterable3 = Lists.newArrayList("a", "b", "c", 1, 2, 3);
 
         Iterable<Serializable> cycleIterable = Iterables.cycle(iterable3);
-        LOG.info("Iterables.cycle = {}", cycleIterable);
+        log.info("Iterables.cycle = {}", cycleIterable);
 
         int size = Iterables.size(iterable3);
-        LOG.info("Iterables.size = {}", size);
+        log.info("Iterables.size = {}", size);
 
         int frequency = Iterables.frequency(iterable3, "a");
-        LOG.info("Iterables.frequency = {}", frequency);
+        log.info("Iterables.frequency = {}", frequency);
 
 
         // 将iterable划分为给定大小的不可修改的子列表, 不足时填充 null
         Iterable<List<Serializable>> paddedPartitionIterable = Iterables.paddedPartition(iterable3, 5);
-        LOG.info("Iterables.paddedPartition = {}", paddedPartitionIterable);
+        log.info("Iterables.paddedPartition = {}", paddedPartitionIterable);
 
         Iterable<List<Serializable>> partitionIterable = Iterables.partition(iterable3, 2);
-        LOG.info("Iterables.partition = {}", partitionIterable);
+        log.info("Iterables.partition = {}", partitionIterable);
 
         Iterable<Serializable> limitIterable = Iterables.limit(iterable3, 2);
-        LOG.info("Iterables.limit = {}", limitIterable);
+        log.info("Iterables.limit = {}", limitIterable);
 
         Iterable<Serializable> skipIterable = Iterables.skip(iterable3, 2);
-        LOG.info("Iterables.skip = {}", skipIterable);
+        log.info("Iterables.skip = {}", skipIterable);
 
         LOG_SPLIT();
 
         Iterable<Serializable> iterable4 = Lists.newArrayList("a", "b", "c", 1, 2, 3);
         boolean removeAll1 = Iterables.removeAll(iterable4, Lists.newArrayList("a", 1));
-        LOG.info("Iterables.removeAll = {} , {}", removeAll1, iterable4);
+        log.info("Iterables.removeAll = {} , {}", removeAll1, iterable4);
         boolean removeAll2 = Iterables.removeAll(iterable4, Lists.newArrayList("d", 4));
-        LOG.info("Iterables.removeAll = {} , {}", removeAll2, iterable4);
+        log.info("Iterables.removeAll = {} , {}", removeAll2, iterable4);
 
         LOG_SPLIT();
 
         Iterable<Serializable> iterable5 = Lists.newArrayList("a", "b", "c", 1, 2, 3);
         boolean retainAll1 = Iterables.retainAll(iterable5, Lists.newArrayList("b", 2));
-        LOG.info("Iterables.retainAll = {} , {}", retainAll1, iterable5);
+        log.info("Iterables.retainAll = {} , {}", retainAll1, iterable5);
         boolean retainAll2 = Iterables.retainAll(iterable5, Lists.newArrayList("d", 4));
-        LOG.info("Iterables.retainAll = {} , {}", retainAll2, iterable5);
+        log.info("Iterables.retainAll = {} , {}", retainAll2, iterable5);
 
         LOG_SPLIT();
 
@@ -97,26 +98,26 @@ public class JavaGuavaCollectTests extends BaseTest {
                 return input.equals("b") || input.equals("2");
             }
         });
-        LOG.info("Iterables.removeIf = {} , {}", removeIf, iterable6);
+        log.info("Iterables.removeIf = {} , {}", removeIf, iterable6);
 
 
         // 确定两个可迭代对象是否包含相同顺序的相等元素。更具体地说，如果 iterable1 和 iterable2 包含相同数量的元素，并且 iterable1 的每个元素都等于 iterable2 的相应元素，则此方法返回 true。
         Iterable<String> iterable7 = Lists.newArrayList("a", "b", "c");
         Iterable<Integer> iterable8 = Lists.newArrayList(1, 2, 3);
         boolean elementsEqual = Iterables.elementsEqual(iterable7, iterable8);
-        LOG.info("Iterables.elementsEqual = {} , {} elementsEqual {} ", elementsEqual, iterable7, iterable8);
+        log.info("Iterables.elementsEqual = {} , {} elementsEqual {} ", elementsEqual, iterable7, iterable8);
 
         // 判断集合是否为空
         boolean isEmpty = Iterables.isEmpty(iterable3);
-        LOG.info("Iterables.isEmpty = {}", isEmpty);
+        log.info("Iterables.isEmpty = {}", isEmpty);
 
         // 获取第一个元素，如果集合为空返回null
         Serializable first = Iterables.getFirst(iterable3, null);
-        LOG.info("Iterables.getFirst = {}", first);
+        log.info("Iterables.getFirst = {}", first);
 
         // 获取最后一个元素，如果集合为空返回null
         Serializable last = Iterables.getLast(iterable3, null);
-        LOG.info("Iterables.getLast = {}", last);
+        log.info("Iterables.getLast = {}", last);
 
         // 获取所有符合条件的元素
         Iterable<Serializable> filterIterable = Iterables.filter(iterable3, new Predicate<Serializable>() {
@@ -125,7 +126,7 @@ public class JavaGuavaCollectTests extends BaseTest {
                 return input.toString().startsWith("a");
             }
         });
-        LOG.info("Iterables.filter = {}", filterIterable);
+        log.info("Iterables.filter = {}", filterIterable);
 
         boolean anyIterable = Iterables.any(iterable3, new Predicate<Serializable>() {
             @Override
@@ -133,7 +134,7 @@ public class JavaGuavaCollectTests extends BaseTest {
                 return input.toString().startsWith("a");
             }
         });
-        LOG.info("Iterables.any = {}", anyIterable);
+        log.info("Iterables.any = {}", anyIterable);
 
         boolean allIterable = Iterables.all(iterable3, new Predicate<Serializable>() {
             @Override
@@ -141,7 +142,7 @@ public class JavaGuavaCollectTests extends BaseTest {
                 return input.toString().startsWith("a");
             }
         });
-        LOG.info("Iterables.all = {}", allIterable);
+        log.info("Iterables.all = {}", allIterable);
 
 
         Serializable findIterable = Iterables.find(iterable3, new Predicate<Serializable>() {
@@ -151,7 +152,7 @@ public class JavaGuavaCollectTests extends BaseTest {
                 return input.equals("a");
             }
         });
-        LOG.info("Iterables.find = {}", findIterable);
+        log.info("Iterables.find = {}", findIterable);
 
 
         Optional<Serializable> tryFindIterable = Iterables.tryFind(iterable3, new Predicate<Serializable>() {
@@ -160,7 +161,7 @@ public class JavaGuavaCollectTests extends BaseTest {
                 return input.equals("aa");
             }
         });
-        LOG.info("Iterables.tryFind = {}", tryFindIterable.isPresent());
+        log.info("Iterables.tryFind = {}", tryFindIterable.isPresent());
 
         // 转换集合类型
         Iterable<Serializable> transformIterable = Iterables.transform(iterable3, new Function<Serializable, Serializable>() {
@@ -169,11 +170,11 @@ public class JavaGuavaCollectTests extends BaseTest {
                 return input.toString() + input.toString();
             }
         });
-        LOG.info("Iterables.transform = {}", transformIterable);
+        log.info("Iterables.transform = {}", transformIterable);
 
 
         Iterable<Serializable> consumingIterable = Iterables.consumingIterable(iterable3);
-        LOG.info("Iterables.consumingIterable = {}", consumingIterable);
+        log.info("Iterables.consumingIterable = {}", consumingIterable);
 
 
         // 合并并排序
@@ -183,7 +184,7 @@ public class JavaGuavaCollectTests extends BaseTest {
                 return o1.toString().compareTo(o2.toString());
             }
         });
-        LOG.info("Iterables.mergeSorted = {}", mergeSortedIterable);
+        log.info("Iterables.mergeSorted = {}", mergeSortedIterable);
 
     }
 
@@ -209,11 +210,11 @@ public class JavaGuavaCollectTests extends BaseTest {
         listMultimap.put(1, "b");
         listMultimap.put(2, "c");
         List<String> listMultimapValues = listMultimap.get(1); // 返回[a, b]
-        LOG.info("listMultimap = {}", listMultimapValues);
+        log.info("listMultimap = {}", listMultimapValues);
 
         // Maps
         Map<Integer, String> immutableMap = ImmutableMap.of(1, "a", 2, "b", 3, "c");
-        LOG.info("immutableMap = {}", immutableMap);
+        log.info("immutableMap = {}", immutableMap);
 
         LOG_SPLIT();
 
@@ -227,37 +228,37 @@ public class JavaGuavaCollectTests extends BaseTest {
 
         //取出元素
         Integer dayCount = hashBasedTable1.get("Hydra", "Feb");
-        LOG.info("hashBasedTable.value = {}", dayCount);
+        log.info("hashBasedTable.value = {}", dayCount);
 
         //rowKey或columnKey的集合
         Set<String> rowKeys = hashBasedTable1.rowKeySet();
         Set<String> columnKeys = hashBasedTable1.columnKeySet();
-        LOG.info("hashBasedTable.rowKeys = {}", rowKeys);
-        LOG.info("hashBasedTable.columnKeys = {}", columnKeys);
+        log.info("hashBasedTable.rowKeys = {}", rowKeys);
+        log.info("hashBasedTable.columnKeys = {}", columnKeys);
 
         //value集合
         Collection<Integer> values = hashBasedTable1.values();
-        LOG.info("hashBasedTable.values = {}", values);
+        log.info("hashBasedTable.values = {}", values);
 
         // 转为嵌套的Map
         Map<String, Map<String, Integer>> rowMap = hashBasedTable1.rowMap();
-        LOG.info("hashBasedTable.rowMap = {}", rowMap);
+        log.info("hashBasedTable.rowMap = {}", rowMap);
 
         Map<String, Map<String, Integer>> columnMap = hashBasedTable1.columnMap();
-        LOG.info("hashBasedTable.columnMap = {}", columnMap);
+        log.info("hashBasedTable.columnMap = {}", columnMap);
 
 
         // 转换rowKey和columnKey
         Table<String, String, Integer> hashBasedTable2 = Tables.transpose(hashBasedTable1);
         Set<Table.Cell<String, String, Integer>> cellSet = hashBasedTable2.cellSet();
         cellSet.forEach(cell ->
-                LOG.info("转换rowKey和columnKey的数据 = 行 {} , 列 {} , 值 {} ", cell.getRowKey(), cell.getColumnKey(), cell.getValue())
+                log.info("转换rowKey和columnKey的数据 = 行 {} , 列 {} , 值 {} ", cell.getRowKey(), cell.getColumnKey(), cell.getValue())
         );
 
         // 改变了原始或转置表中的值，他们会相互同步值
         hashBasedTable1.put("Trunks", "Jan", 25);
         hashBasedTable2.put("Feb", "Trunks", 22);
-        LOG.info("hashBasedTable.values = {}", hashBasedTable1.values());
+        log.info("hashBasedTable.values = {}", hashBasedTable1.values());
 
 
         LOG_SPLIT();
@@ -268,11 +269,11 @@ public class JavaGuavaCollectTests extends BaseTest {
         biMap.put("Tony", "IronMan");
         biMap.put("Thanos", "Titan");
         // 使用key获取value
-        LOG.info("biMap.get = {}", biMap.get("Tony"));
+        log.info("biMap.get = {}", biMap.get("Tony"));
 
         BiMap<String, String> inverseBiMap = biMap.inverse();
         //使用value获取key
-        LOG.info("biMap.inverse.get = ", inverseBiMap.get("Titan"));
+        log.info("biMap.inverse.get = ", inverseBiMap.get("Titan"));
 
         // 反转后的BiMap并不是一个新的对象，它实现了一种视图的关联，所以对反转后的BiMap执行的所有操作会作用于原先的BiMap上
         // 因此修改后的值也能同步回原数据
@@ -283,7 +284,7 @@ public class JavaGuavaCollectTests extends BaseTest {
         try {
             biMap.put("Tony", "IronMan");
         } catch (IllegalArgumentException exception) {
-            LOG.error("BiMap的value不可重复");
+            log.error("BiMap的value不可重复");
         }
         biMap.put("Stark", "IronMan");
 
