@@ -1,12 +1,11 @@
-package io.github.toquery.example.java.model;
+package io.github.toquery.example.java.mapstruct;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 /**
  *
@@ -14,18 +13,19 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class Book {
+public class BookVO {
 
-    private Long id;
-
+    private String id;
+    private String type;
+    private String typeName;
     private String name;
-
     private String author;
+    private BigDecimal salesAmount;
     /**
      * 单价
      */
     private Double price;
+
     /**
      * 数量
      */
@@ -36,13 +36,18 @@ public class Book {
      */
     private String press;
 
+
+    private String pressDate;
+
+    private String localTime;
+
     /**
      * 发行日期
      */
-    private LocalDate publishDate;
+    private String publishDate;
 
     /**
      * 购买时间
      */
-    private LocalDateTime buyDateTime;
+    private String buyDateTime;
 }

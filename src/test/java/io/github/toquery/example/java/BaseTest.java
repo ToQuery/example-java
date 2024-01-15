@@ -2,6 +2,9 @@ package io.github.toquery.example.java;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.toquery.example.java.jackson.Jackson;
+import lombok.SneakyThrows;
 
 import java.util.Map;
 
@@ -9,6 +12,8 @@ import java.util.Map;
  *
  */
 public class BaseTest {
+
+
     protected static final Log log = LogFactory.get();
 
     protected static final String separation = "------------------------------------------------------------------------";
@@ -19,6 +24,11 @@ public class BaseTest {
         System.out.println();
     }
 
+
+    @SneakyThrows
+    public static void printObject(Object object) {
+        log.info(Jackson.getObjectMapper().writeValueAsString(object));
+    }
 
     /**
      * 打印日志

@@ -67,4 +67,44 @@ public class JavaGuavaRangeTests extends BaseTest{
 //        for(int grade : ContiguousSet.create(validGrades, DiscreteDomain.integers())) {
 //        }
     }
+
+
+    @Test
+    public void rangeSetOverlapTests(){
+        // 第一个例子，没有重叠区间
+        RangeSet<Integer> rangeSet1 = TreeRangeSet.create();
+        rangeSet1.add(Range.closed(1, 10));
+        rangeSet1.add(Range.closed(25, 45));
+        System.out.println("第一个例子是否有重叠区间: " + hasOverlap(rangeSet1));
+
+        // 第二个例子，包含重叠区间
+        RangeSet<Integer> rangeSet2 = TreeRangeSet.create();
+        rangeSet2.add(Range.closed(1, 10));
+        rangeSet2.add(Range.closed(5, 45));
+        System.out.println("第二个例子是否有重叠区间: " + hasOverlap(rangeSet2));
+
+    }
+
+    // 检查是否存在重叠区间的方法
+    private static boolean hasOverlap(RangeSet<Integer> rangeSet) {
+        for (Range<Integer> range : rangeSet.asRanges()) {
+            // 检查 rangeSet 中是否有任何与当前 range 重叠的区间
+            if (!rangeSet.subRangeSet(range).isEmpty()) {
+                return true; // 存在重叠
+            }
+        }
+        return false; // 不存在重叠
+    }
+
+    // 检查是否存在重叠区间的方法
+//    private static boolean hasOverlap(RangeSet<Integer> rangeSet) {
+//        for (Range<Integer> range : rangeSet.asRanges()) {
+//            for (Range<Integer> otherRange : rangeSet.asRanges()) {
+//                if (range != otherRange && range.isConnected(otherRange)) {
+//                    return true; // 存在重叠
+//                }
+//            }
+//        }
+//        return false; // 不存在重叠
+//    }
 }
