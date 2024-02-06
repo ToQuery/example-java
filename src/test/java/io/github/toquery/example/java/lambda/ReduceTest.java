@@ -11,7 +11,7 @@ import java.util.stream.Stream;
  * @author toquery
  * @version 1
  */
-public class TestReduce extends BaseTest {
+public class ReduceTest extends BaseTest {
 
     private List<Integer> ints = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 

@@ -1,11 +1,21 @@
 package io.github.toquery.example.java.lambda;
 
+import lombok.Data;
+import lombok.ToString;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * Java12 Collectors.teeing 的使用  <a href="https://segmentfault.com/a/1190000020933574">link</a>
  */
-public class TestCollectorTeeing {
+public class CollectorsTeeingTests {
 
-    /*
 
 
     // TestCollectorTeeing.CountSum(count=7, sum=46)
@@ -155,5 +165,4 @@ public class TestCollectorTeeing {
             this.totalNumberOfParticipants = totalNumberOfParticipants;
         }
     }
-     */
 }

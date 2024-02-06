@@ -34,6 +34,13 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-bom</artifactId>
+				<version>5.8.25</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -54,6 +61,32 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.reactivex.rxjava3/rxjava -->
+		<dependency>
+			<groupId>io.reactivex.rxjava3</groupId>
+			<artifactId>rxjava</artifactId>
+			<version>3.1.8</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.akarnokd/rxjava3-jdk9-interop -->
+		<dependency>
+			<groupId>com.github.akarnokd</groupId>
+			<artifactId>rxjava3-jdk9-interop</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.akarnokd/rxjava3-fiber-interop -->
+		<dependency>
+			<groupId>com.github.akarnokd</groupId>
+			<artifactId>rxjava3-fiber-interop</artifactId>
+			<version>0.0.18</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.soot-oss</groupId>
+			<artifactId>soot</artifactId>
+			<version>4.3.0</version>
 		</dependency>
 
 

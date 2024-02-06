@@ -66,10 +66,10 @@ public class CollectorsTest extends BaseTest {
         log.info("{}testToMap{}", separation, separation);
         CollectorsTest.printLog(pressBookName);
 
-        // TODO mapFactory
-//        Map<String, String> pressBookName = BOOKS.stream().collect(Collectors.toMap(Book::getPress, Book::getName, (s, a) -> s + ", " + a));
-//        LOG.info("{}testToMap{}", separation, separation);
-//        CollectorsTest.printLog(pressBookName);
+        // mapFactory
+        Map<String, String> pressBookNameHashMap = BOOKS.stream().collect(Collectors.toMap(Book::getPress, Book::getName, (s, a) -> s + ", " + a, HashMap::new));
+        log.info("{}testTopressBookNameHashMap{}", separation, separation);
+        CollectorsTest.printLog(pressBookNameHashMap);
     }
 
     @Test

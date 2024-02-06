@@ -4,7 +4,6 @@ package io.github.toquery.example.java.lambda;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import io.github.toquery.example.java.BaseTest;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -17,7 +16,7 @@ import static java.util.stream.Collectors.toList;
  * @author toquery
  * @version 1
  */
-public class TestIntellJIDEAStreamDebugger extends BaseTest {
+public class IDEAStreamDebuggerTest extends BaseTest {
 
     @Test
     public void test1() {

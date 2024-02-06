@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import io.github.toquery.example.java.BaseTest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.stream.Stream;
  * @author toquery
  * @version 1
  */
-public class TestPeekAndMapForEach extends BaseTest {
+public class PeekAndMapTests extends BaseTest {
     private List<String> data = Lists.newArrayList("aaa", "bbb", "ccc", "ddd", "eee", "fff");
 
     private List<User> users = Lists.newArrayList(new User("aaa"), new User("bbb"), new User("ccc"), new User("ddd"), new User("eee"), new User("fff"));
