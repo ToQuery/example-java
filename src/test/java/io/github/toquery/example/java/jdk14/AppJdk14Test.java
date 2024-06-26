@@ -10,6 +10,7 @@ public class AppJdk14Test {
         Object type = new Object();
 
         if (type instanceof String str){
+            String s = (String)type;
             //
         }else if (type instanceof Integer i){
 
